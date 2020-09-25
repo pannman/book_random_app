@@ -11,4 +11,9 @@ class RandomBooksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get show" do
+    get book_path
+    assert_response :success
+  end
+
 end

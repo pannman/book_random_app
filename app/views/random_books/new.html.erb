@@ -1,2 +1,13 @@
-<h1>RandomBooks#new</h1>
-<p>Find me in app/views/random_books/new.html.erb</p>
+<h1>本日の本を決めよう！</h1>
+<% if @book %>
+<p>今日の本</p>
+<%= @book.title %>
+<% end %>
+<%= form_for(:random_books , url: random_path)  do |f| %>
+    <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
+  <%= f.label :キーワードを入力してください %>
+  <%= f.text_field :keyword %>
+  <%= f.submit "今日の本を決める" %>
+<% end %>

@@ -1,0 +1,3 @@
+class RandomBook < ApplicationRecord
+
+end
