@@ -1,0 +1,2 @@
+module RandomBooksHelper
+end
