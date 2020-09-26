@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_080117) do
+ActiveRecord::Schema.define(version: 2020_09_26_125321) do
 
   create_table "random_books", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_080117) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "img"
   end
 
 end

@@ -1,7 +1,9 @@
+<%= link_to "履歴を見る", random_books_path, method: :get %>
 <h1>本日の本を決めよう！</h1>
 <% if @book %>
-<p>今日の本</p>
-<%= @book.title %>
+  <p>今日の本</p>
+  <%= @book.title %>
+  <%= link_to image_tag(@book.img),random_book_path(@book) %>
 <% end %>
 <%= form_for(:random_books , url: random_path)  do |f| %>
     <% flash.each do |message_type, message| %>

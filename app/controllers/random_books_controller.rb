@@ -2,10 +2,9 @@ class RandomBooksController < ApplicationController
   include GoogleBooksApi
 
   def new
-    @book = RandomBook.last
+    book = RandomBook.last
     now = Time.current
-    # まだ完成していない
-    if book.created_at-now < 0  
+    if book && book.created_at.day == now.day
       @book = book
     else
       @book = nil
@@ -17,7 +16,7 @@ class RandomBooksController < ApplicationController
   end
 
   def show
-    @book = RandomBook.find(id: params[:id])
+    @book = RandomBook.find(params[:id])
   end
 
   def create
@@ -27,7 +26,7 @@ class RandomBooksController < ApplicationController
       json = get_json_from_url(url)
       @book = {}
       if items = json['items']
-        ram = rand(20)
+        ram = rand(19)
         @book = items[ram]
         if book_create(@book)
           redirect_to random_url
@@ -46,6 +45,8 @@ class RandomBooksController < ApplicationController
   end
 
   def destroy
+    RandomBook.find(params[:id]).destroy
+    redirect_to random_books_path
   end
 
 end

@@ -9,12 +9,17 @@ module GoogleBooksApi
   end
 
   def book_create(book)
-    randombook =  RandomBook.new(title:       book["volumeInfo"]['title'],
-                                 author:      book["volumeInfo"]['authors'],
-                                 publisher:   book["volumeInfo"]['publisher'],
-                                 description: book["volumeInfo"]['description']
-                               )
-    randombook.save
+    if book == nil
+      flash[:danger] = "本を保存できませんでした。"
+    else
+      randombook =  RandomBook.new(title:       book["volumeInfo"]['title'],
+                                   author:      book["volumeInfo"]['authors'],
+                                   publisher:   book["volumeInfo"]['publisher'],
+                                   description: book["volumeInfo"]['description'],
+                                   img:         book["volumeInfo"]['imageLinks']['thumbnail']
+                                 )
+      randombook.save
+    end
   end
 
   # # ②IDから本の情報を取得するAPIを叩く
